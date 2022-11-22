@@ -1,0 +1,550 @@
+Assignment (CS211)- 07 
+ 1. Write a C++ Program that illustrate single inheritance. 
+2. Write a C++ Program that illustrate multipe inheritance. 
+3. Write a C++ Program that illustrate multi level inheritance. 
+4.Write a C++ Program that illustrate Hierarchical inheritance.
+ 5. Write a C++ program to show inheritance using different levels.
+ 6. Write a program in C++ which creates a multiple inheritance hierarchy of Teacher classes derived from bot Person, Employee classes. Each class must implement a Show() member function and utilize scope resolution operator.
+
+
+Answer-1
+#include<iostream>
+
+using namespace std;
+
+class a
+{
+    public:
+    void helloA()
+    {
+        cout<<"A"<<'\n';
+    }
+};
+
+class b:public a
+{
+    public:
+    void helloB()
+    {
+        cout<<"B"<<'\n';
+    }
+};
+
+int main()
+{
+    b ob;
+    ob.helloB();
+    ob.helloA();
+}
+
+Answer-2
+
+
+
+
+#include<iostream>
+
+using namespace std;
+
+class a
+{
+    public:
+    void helloA()
+    {
+        cout<<"A"<<'\n';
+    }
+};
+
+class b
+{
+    public:
+    void helloB()
+    {
+        cout<<"B"<<'\n';
+    }
+};
+
+class c:public a,public b
+{
+    public:
+    void helloC()
+    {
+        cout<<"C"<<'\n';
+    }
+};
+
+int main()
+{
+    c ob;
+    ob.helloC();
+    ob.helloB();
+    ob.helloA();
+}
+
+
+
+Answer-3
+
+#include <iostream>
+using namespace std;
+
+class A {
+    public:
+      void display() {
+          cout<<"Base class content.";
+      }
+};
+
+class B : public A {};
+
+class C : public B {};
+
+int main() {
+    C obj;
+    obj.display();
+    return 0;
+}
+
+
+Answer-4
+
+// C++ program to demonstrate hierarchical inheritance
+
+#include <iostream>
+using namespace std;
+
+// base class
+class Animal {
+   public:
+    void info() {
+        cout << "I am an animal." << endl;
+    }
+};
+
+// derived class 1
+class Dog : public Animal {
+   public:
+    void bark() {
+        cout << "I am a Dog. Woof woof." << endl;
+    }
+};
+
+// derived class 2
+class Cat : public Animal {
+   public:
+    void meow() {
+        cout << "I am a Cat. Meow." << endl;
+    }
+};
+
+int main() {
+    // Create object of Dog class
+    Dog dog1;
+    cout << "Dog Class:" << endl;
+    dog1.info();  // Parent Class function
+    dog1.bark();
+
+    // Create object of Cat class
+    Cat cat1;
+    cout << "\nCat Class:" << endl;
+    cat1.info();  // Parent Class function
+    cat1.meow();
+
+    return 0;
+}
+
+
+
+Answer-5
+
+#include <iostream>
+using namespace std;
+
+class A {
+    public:
+      void display() {
+          cout<<"Base class content.";
+      }
+};
+
+class B : public A {};
+
+class C : public B {};
+
+int main() {
+    C obj;
+    obj.display();
+    return 0;
+}
+
+
+Answer-6
+
+#include<iostream>
+using namespace std;
+
+int age = 19;
+
+class bot
+{
+    public:
+    void showb()
+    {
+        cout<<"I am a bot and age is "<<::age<<'\n';
+    }
+};
+
+class Employee : public bot 
+{
+   public:
+    void showe()
+    {
+        cout<<"I am also a employee and age is "<<::age<<'\n';
+    }
+};
+
+class Teacher : public Employee
+{
+    public:
+    void showT()
+    {
+        cout<<"I am also a Teacher and age is "<<::age<<'\n';
+    }
+};
+
+int main()
+{
+    Teacher ob;
+    int a = 10;
+    ob.showb();
+    ob.showe();
+    ob.showT();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Assignment (CS211)- 08 (ECE $ MEA) 
+1. Write a C++ program to write and read object using read and write function.
+ 2. Write a C++ program to demonstrate example of tellg() and tellp() function. 
+3. Write a C++ Program for Username and Password Registration System.
+ 4. Write a C++ Program to Maintain House Records using File Handling.
+
+
+Answer-1
+
+//C++ program to write and read object using read and write function.
+#include <iostream>
+#include <fstream>
+ 
+using namespace std;
+ 
+//class student to read and write student details
+class student
+{
+    private:
+        char name[30];
+        int age;
+    public:
+        void getData(void)
+        { cout<<"Enter name:"; cin.getline(name,30);
+          cout<<"Enter age:"; cin>>age;
+        }
+ 
+        void showData(void)
+        {
+        cout<<"Name:"<<name<<",Age:"<<age<<endl;
+        }
+};
+ 
+int main()
+{
+    student s;
+     
+    ofstream file;
+ 
+    //open file in write mode
+    file.open("aaa.txt",ios::out);
+    if(!file)
+    {
+      cout<<"Error in creating file.."<<endl;
+      return 0;
+    }
+    cout<<"\nFile created successfully."<<endl;
+ 
+    //write into file
+    s.getData();    //read from user
+    file.write((char*)&s,sizeof(s));    //write into file
+ 
+    file.close();   //close the file
+    cout<<"\nFile saved and closed succesfully."<<endl;
+ 
+    //re open file in input mode and read data
+    //open file1
+    ifstream file1;
+    //again open file in read mode
+    file1.open("aaa.txt",ios::in);
+    if(!file1){
+        cout<<"Error in opening file..";
+        return 0;
+    }
+    //read data from file
+    file1.read((char*)&s,sizeof(s));
+ 
+    //display data on monitor
+    s.showData();
+    //close the file
+    file1.close();
+     
+    return 0;
+}
+
+
+
+
+Answer-2
+
+//C++ program to demonstrate example of tellg() and tellp() function.
+
+#include <iostream>
+#include <fstream>
+ 
+using namespace std;
+ 
+int main()
+{
+    fstream file;
+    //open file sample.txt in and Write mode
+    file.open("sample.txt",ios::out);
+    if(!file)
+    {
+        cout<<"Error in creating file!!!";
+        return 0;
+    }
+    //write A to Z
+    file<<"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    //print the position
+    cout<<"Current position is: "<<file.tellp()<<endl;
+    file.close();
+ 
+    //again open file in read mode
+    file.open("sample.txt",ios::in);
+    if(!file)
+    {
+        cout<<"Error in opening file!!!";
+        return 0;
+    }
+    cout<<"After opening file position is: "<<file.tellg()<<endl;
+     
+    //read characters untill end of file is not found
+    char ch;
+    while(!file.eof())
+    {
+        cout<<"At position : "<<file.tellg();   //current position
+        file>>ch;   //read character from file
+        cout<<" Character \""<<ch<<"\""<<endl;
+    }
+ 
+    //close the file
+    file.close();
+    return 0;
+}
+
+
+Answer-3
+
+//C++ program to write and read object using read and write function.
+#include <iostream>
+#include <fstream>
+ 
+using namespace std;
+ 
+//class student to read and write student details
+class student
+{
+    private:
+        char name[30];
+        int age;
+    public:
+        void getData(void)
+        { cout<<"Enter name:"; cin.getline(name,30);
+          cout<<"Enter age:"; cin>>age;
+        }
+ 
+        void showData(void)
+        {
+        cout<<"Name:"<<name<<",Age:"<<age<<endl;
+        }
+};
+ 
+int main()
+{
+    student s;
+     
+    ofstream file;
+ 
+    //open file in write mode
+    file.open("aaa.txt",ios::out);
+    if(!file)
+    {
+      cout<<"Error in creating file.."<<endl;
+      return 0;
+    }
+    cout<<"\nFile created successfully."<<endl;
+ 
+    //write into file
+    s.getData();    //read from user
+    file.write((char*)&s,sizeof(s));    //write into file
+ 
+    file.close();   //close the file
+    cout<<"\nFile saved and closed succesfully."<<endl;
+ 
+    //re open file in input mode and read data
+    //open file1
+    ifstream file1;
+    //again open file in read mode
+    file1.open("aaa.txt",ios::in);
+    if(!file1){
+        cout<<"Error in opening file..";
+        return 0;
+    }
+    //read data from file
+    file1.read((char*)&s,sizeof(s));
+ 
+    //display data on monitor
+    s.showData();
+    //close the file
+    file1.close();
+     
+    return 0;
+}
+
+
+
+Answer-4
+/*  C++ Program to Maintain House Records using File Handling */
+
+#include<fstream>
+#include<iostream>
+#include<string.h>
+#include<stdio.h>
+using namespace std;
+
+int opt;
+
+class housing
+{
+  int hno,income;
+  char name[20],type[20];
+  public:
+      void assign()
+      {
+           if(income<15000)
+           strcpy(type,"LIG");
+           else if(income>=15000)
+           strcpy(type,"MIG");
+           else if(income>=25000)
+           strcpy(type,"HIG");
+      }
+
+      void input()
+      {
+           cout<<"\n Enter House Number: ";
+           cin>>hno;
+           cout<<"\n House Name: ";
+           cin>>name;
+           cout<<"\n Annual Income: ";
+           cin>>income;
+           assign();
+      }
+
+       void output()
+      {
+            cout<<"House Number: "<<hno<<"\n"<<"House Name: "<<name<<"\n"<<"Annual                                           Income: "<<income<<"\n"<<"Type: "<<type;
+      }
+
+      int retno()
+      {
+            return hno;
+      }
+};
+
+int main()
+{
+     housing h,h1;
+     fstream f;
+     int hono;
+
+     while(true)
+     {
+         cout<<"\n 1: Add Record"<<"\n 2: Modify Record"<<"\n 3: Display Records"<<"\n 4: Exit\n"<<endl;
+         cin>>opt;
+
+         if(opt==1)
+         {
+              char ch='y';
+              f.open("C:\\Users\\acer\\Documents\\file4.txt",ios::out|ios::binary|ios::app);
+              while(ch=='y')
+              {
+                   cout<<"\n Enter Details: ";
+                   h.input();
+                   f.write((char*)&h,sizeof(h));
+                   cout<<"\n Want to Enter More? y/n: "<<endl;
+                   cin>>ch;
+              }
+             f.close();
+         }
+
+         if(opt==2)
+         {
+              cout<<"\n Enter House No of Record to be modified: ";
+              cin>>hono;
+              f.open("C:\\Users\\acer\\Documents\\file4.txt",ios::in|ios::out|ios::binary|ios::ate);
+              f.seekg(0);
+
+              while(f.read((char*)&h,sizeof(h)))
+              {
+                   if(h.retno()==hono)
+                   {
+                        cout<<"\n New Value: ";
+                        h1.input();
+                        f.seekp(-sizeof(h),ios::cur);
+                        f.write((char*)&h1,sizeof(h1));
+                   }
+              }
+             f.close();
+         }
+
+         if(opt==3)
+         {
+              f.open("C:\\Users\\acer\\Documents\\file4.txt",ios::in|ios::binary);
+              f.seekg(0);
+
+              while(f.read((char*)&h,sizeof(h)))
+              h.output();
+
+              f.close();
+         }
+
+         if(opt==4)
+             exit(0);
+
+        cout<<"\nPress any key to continue...... ";
+
+    }
+
+    return 0;
+}
+
